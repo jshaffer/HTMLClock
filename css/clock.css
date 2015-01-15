@@ -1,0 +1,14 @@
+body {
+	background : #0386b8;
+}
+
+.myFont {
+	color : white;
+	text-align: center;
+}
+
+#date {
+	font-size : 200%;
+}
+
+
