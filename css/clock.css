@@ -5,10 +5,27 @@ body {
 .myFont {
 	color : white;
 	text-align: center;
+    font-size : 200%;
 }
 
-#date {
-	font-size : 200%;
+#forecastIcon {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-
+.cold {
+    background: #95A5A6;
+}
+.chilly {
+    background: #1ABC9C;   
+}
+.nice {
+    background: #2980B9;
+}
+.Warm {
+    background: #E67E22;
+}
+.hot {
+    background: #E74C3C;
+}
