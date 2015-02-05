@@ -3,6 +3,34 @@ $(function(){
     getTemp();
 })
 
+function showAlarmPopup() {
+    $("#mask").removeClass("hide")
+    $("#popup").removeClass("hide")
+}   
+
+function hideAlarmPopup() {
+    $("#mask").addClass("hide")
+    $("#popup").addClass("hide")
+}
+
+function insertAlarm(hours, mins, ampm, alarmName) {
+    var newDiv = $("<div>")
+    newDiv.addClass("flexable")
+    newDiv.append("<div class='name'>" +  alarmName + "</div><div class='time'>" + hours + ":" + mins + " " + ampm + "</div>")
+    $("#alarms").append(newDiv)
+}
+
+function addAlarm() {
+    var hours = $("#hours options:selected").text()
+    var mins = $("#mins options:selected").text()
+    var ampm = $("#ampm options:selected").text()
+    var alarmName = $("#alarmName options:selected").text()
+
+    insertAlarm(hours, mins, ampm, alarmName);
+    hideAlarmPopup();
+    
+}
+
 function getTime() {
 	var d = new Date();
     var hours = (d.getHours() + 1) % 13;

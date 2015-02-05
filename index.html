@@ -4,14 +4,16 @@
 		<meta charset="utf-8">
 		<title>Joel's Webpage</title>
 		<link href="./css/clock.css" rel="stylesheet">
+		<link href="./css/alarm.css" rel="stylesheet">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<script src="./js/clock.js"></script>
 	</head>
 	<body>
 		<div class="myFont">
 			<h1>Joel's Clock</h1>
-			<h2>No Alarms Set.</h2>
 			
+
+
 			<div id="date">Hello</div>
 		</div>
 		
@@ -23,6 +25,41 @@
 		<br>
 
 		<img id="forecastIcon"></img>
+
+		<div id="alarmContainer" class="flexable">
+			<div id="alarmHeader">
+				<h2>Alarms</h2>
+				<input type="button" value="Add Alarm" class="button" onclick="showAlarmPopup()" />
+			</div>
+			<div id="alarms"></div>
+		</div>
+
+		<div id="mask" class="hide"></div>
+		
+		<div id="popup" class="hide">
+		    <h2>Add Alarm</h2>
+		    <div id="timeContainer">
+		        <select id="hours">
+		            <option>01</option>
+		            …
+		        </select>
+		        <select id="mins">
+		            <option>00</option>
+		            …
+		        </select>
+		        <select id="ampm">
+		            <option>am</option>
+		            <option>pm</option>
+		        </select>
+		    </div>
+		    <input type="text" id="alarmName" placeholder="Alarm Name" />      
+		    <div class="flexable">
+		        <input type="button" value="Cancel" class="button"/ onclick="hideAlarmPopup()">
+		        <input type="button" value="Save Alarm" onclick="addAlarm()" class="button"/>
+		    </div>
+		</div>
+
+
 
 		
 		
