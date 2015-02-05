@@ -21,25 +21,19 @@ function insertAlarm(hours, mins, ampm, alarmName) {
 }
 
 function addAlarm() {
-    var hours = $("#hours options:selected").text()
-    var mins = $("#mins options:selected").text()
-    var ampm = $("#ampm options:selected").text()
-    var alarmName = $("#alarmName options:selected").text()
+    var hours = $("#hours option:selected").val()
+    var mins = $("#mins option:selected").val()
+    var ampm = $("#ampm option:selected").val()
+    var alarmName = $("#alarmName").val() + "&nbsp;"
 
     insertAlarm(hours, mins, ampm, alarmName);
     hideAlarmPopup();
-    
+
 }
 
 function getTime() {
 	var d = new Date();
-    var hours = (d.getHours() + 1) % 13;
-    var seconds = d.getSeconds().toString();
-    if(seconds.length == 1){
-        seconds = "0" + seconds;
-    }
-    var date = hours + ":" + d.getMinutes() + ":" + seconds;
-	$("#date").html(date);
+	$("#date").html(d.toLocaleTimeString());
 	setTimeout(getTime, 1000);
 }
 
