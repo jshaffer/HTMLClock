@@ -8,6 +8,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.3.4.min.js"></script>
 		<script src="./js/clock.js"></script>
+		<script src="https://apis.google.com/js/client:platform.js" async defer></script>
 	</head>
 	<body>
 		<div class="myFont">
@@ -29,6 +30,17 @@
 
 		<br>
 		<br>
+
+		<span style="margin-left:37.25%;" id="signinButton">
+			<span
+				class="g-signin"
+				data-callback="signinCallback"
+				data-clientid="286521576152-sk35hs0k211c0qcae6kaoi443ubn1kg1.apps.googleusercontent.com"
+				data-cookiepolicy="single_host_origin"
+				data-requestvisibleactions="http://schema.org/AddAction"
+				data-scope="https://www.googleapis.com/auth/plus.login">
+			</span>
+		</span>
 
 		<div id="alarmContainer" >
 			<div id="alarmHeader" class="flexable">
