@@ -122,13 +122,24 @@ function getTemp() {
 }
 
 function signinCallback(authResult) {
-  if (authResult['status']['signed_in']) {
-    $('#signinButton').css('display', 'none');
-    userAuthenticated();
-    console.log("it worked!")
-  } else {
-    console.log('Sign-in state: ' + authResult['error']);
-  }
+    if (authResult['status']['signed_in']) {
+        gapi.client.load('plus','v1', function() {
+            var request = gapi.client.plus.people.get({
+               'userId': 'me'
+            });
+            request.execute(function(resp) {
+               userName = resp.displayName;
+               userId = resp.result.id;
+               console.log(userId);
+               // // Show the users id
+               // getAllAlarms(userId);
+               // $('.clockText').html(userName + "'s Clock and Alarms");
+            });
+        });
+        $('#signinButton').css('display', 'none');
+    } else {
+        console.log('Sign-in state: ' + authResult['error']);
+    }
 }
 
 function userAuthenticated() {
