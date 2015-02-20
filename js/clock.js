@@ -1,4 +1,5 @@
 var alarms = {}
+var _userId = 0
 
 $(function(){
 	getTime();
@@ -6,10 +7,12 @@ $(function(){
     getAllAlarms();
 })
 
-function getAllAlarms() {
+function getAllAlarms(userId) {
     Parse.initialize("EXmf1XEREwS4IvIcVpuN9lStvNu0zTyXLR64gzSS", "JWiHJBZvOoBmKLZzyAjpZSBDCw8nen03OHoJ9AbC");
     var AlarmObject = Parse.Object.extend("Alarm");
     var query = new Parse.Query(AlarmObject);
+
+    query.equalTo("userId", googleId);
     query.find({
         success: function(results) {
           for (var i = 0; i < results.length; i++) { 
@@ -22,7 +25,7 @@ function getAllAlarms() {
 
             alarms[alarmName] = id;
 
-            insertAlarm(hours, mins, ampm, alarmName);
+            insertAlarm(hours, mins, ampm, alarmName, _userId);
           }
         }
     });
@@ -59,7 +62,7 @@ function hideAlarmPopup() {
     $("#popup").addClass("hide")
 }
 
-function insertAlarm(hours, mins, ampm, alarmName, alarmId) {
+function insertAlarm(hours, mins, ampm, alarmName, alarmId, userId) {
     var newDiv = $("<div id='" + alarmName +"'>")
     newDiv.addClass("flexable")
     var button = "<button onclick=\'deleteStr(\"" + alarmName + "\")\'>X</button>";
@@ -77,9 +80,9 @@ function addAlarm() {
 
     var AlarmObject = Parse.Object.extend("Alarm");
     var alarmObject = new AlarmObject();
-    alarmObject.save({"time": time,"alarmName": alarmName}, {
+    alarmObject.save({"time": time,"alarmName": alarmName, "googleId" : _userId}, {
         success: function(object) {
-            insertAlarm(hours, mins, ampm, alarmName);
+            insertAlarm(hours, mins, ampm, alarmName, _userId);
             hideAlarmPopup();
             alarms[alarmName] = object.id
         }
@@ -130,7 +133,11 @@ function signinCallback(authResult) {
             request.execute(function(resp) {
                userName = resp.displayName;
                userId = resp.result.id;
-               console.log(userId);
+               _userId = userId
+
+               $("#userName").html(userName + "'s Clock")
+               getAllAlarms(userId)
+
                // // Show the users id
                // getAllAlarms(userId);
                // $('.clockText').html(userName + "'s Clock and Alarms");
@@ -140,10 +147,6 @@ function signinCallback(authResult) {
     } else {
         console.log('Sign-in state: ' + authResult['error']);
     }
-}
-
-function userAuthenticated() {
-
 }
 
 function people() {
