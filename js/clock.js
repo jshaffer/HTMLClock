@@ -12,7 +12,7 @@ function getAllAlarms(userId) {
     var AlarmObject = Parse.Object.extend("Alarm");
     var query = new Parse.Query(AlarmObject);
 
-    query.equalTo("userId", _userId);
+    query.equalTo("googleId", _userId);
     query.find({
         success: function(results) {
           for (var i = 0; i < results.length; i++) { 
