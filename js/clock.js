@@ -32,7 +32,7 @@ function getAllAlarms(userId) {
 }
 
 function deleteStr(str) {
-
+    ga('send', 'event', 'delete', 'delete');
     var AlarmObject = Parse.Object.extend("Alarm");
     var query = new Parse.Query(AlarmObject);
     query.get(alarms[str], {
@@ -71,6 +71,8 @@ function insertAlarm(hours, mins, ampm, alarmName, alarmId, userId) {
 }
 
 function addAlarm() {
+    ga('send', 'event', 'add', 'add');
+
     var hours = $("#hours option:selected").val()
     var mins = $("#mins option:selected").val()
     var ampm = $("#ampm option:selected").val()
